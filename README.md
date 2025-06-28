@@ -3,6 +3,7 @@
 A powerful, AI-driven stock analysis tool that leverages real-time and historical data to provide actionable investment insights. Built with Node.js, Yahoo Finance API, and Groq LLM.
 
 ## Features
+- Accepts generic company names or descriptions (not just ticker symbols); the agent/model resolves the ticker automatically
 - Fetches real-time and historical stock data from Yahoo Finance
 - Analyzes key financial metrics (P/E ratio, market cap, 52-week high/low, volume, etc.)
 - Compares stocks to sector benchmarks
@@ -43,8 +44,13 @@ You can analyze a stock by running the main script or integrating the `analyzeSt
 ```js
 import { analyzeStock } from './agents/stockGuruAgent.js';
 
-const result = await analyzeStock('AAPL', { period1: '2024-01-01', period2: '2025-01-01' });
+// You can now use a company name, description, or ticker symbol:
+const result = await analyzeStock('Apple Inc.');
 console.log(result);
+
+// Or specify a custom period:
+const result2 = await analyzeStock('Microsoft', { period1: '2024-01-01', period2: '2025-01-01' });
+console.log(result2);
 ```
 
 ## Project Structure
@@ -62,9 +68,6 @@ console.log(result);
 
 ## Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](LICENSE)
 
 ## Disclaimer
 This tool is for informational purposes only and does not constitute financial advice. Always do your own research before making investment decisions.
